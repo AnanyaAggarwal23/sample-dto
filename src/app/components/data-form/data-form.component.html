@@ -1,0 +1,33 @@
+<div class="form-container">
+    <form [formGroup]="paymentForm">
+        <div class="form-group">
+            <label>Name</label>
+            <input class="form-control" placeholder="Your name" formControlName="nameControl" type="string">
+            <span class="err-msg" *ngIf="!controls.nameControl.valid">*This field is required</span>
+        </div>
+        <div class="form-group">
+            <label>Card Number</label>
+            <input class="form-control" placeholder="Your card number" formControlName="numControl" type="string">
+            <span class="err-msg" *ngIf="!controls.numControl.valid">*This field is required</span>
+        </div>
+        <div class="form-group">
+            <label>Expiry Date</label>
+            <input class="form-control" [ngClass]="{'date-error': showDateError}" placeholder="dd-mm-yyyy" formControlName="expDateControl" type="date">
+            <span class="err-msg" *ngIf="!controls.expDateControl.valid || showDateError">*Expiry date is required and must be greater than current date</span>
+        </div>
+        <div class="form-group">
+            <label>Security Code(CVV)</label>
+            <input class="form-control" placeholder="Your card CVV" formControlName="secCodeControl" type="string">
+            <span class="err-msg" *ngIf="!controls.secCodeControl.valid">*CVV must be of 3 digits</span>
+        </div>
+        <div class="form-group">
+            <label>Amount</label>
+            <input class="form-control" placeholder="Your card balance" formControlName="amntControl" type="number">
+            <span class="err-msg" *ngIf="!controls.amntControl.valid">*Amount needs to be greater than 0</span>
+        </div>
+        <button *ngIf="!selectedCard" type="submit" class="btn btn-primary" [disabled]="!paymentForm.valid" (click)="onSubmit()">Submit
+        </button>
+        <button *ngIf="selectedCard" type="submit" class="btn btn-primary" [disabled]="!paymentForm.valid" (click)="onUpdate()">Update
+        </button>
+    </form>
+</div>

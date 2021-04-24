@@ -1,0 +1,14 @@
+.form-container {
+  margin: 20px;
+  width: 50%;
+}
+
+.err-msg {
+  color: red;
+  font-size: 13px;
+}
+
+input.ng-invalid.ng-touched,
+.date-error {
+  border: 1px solid red;
+}
